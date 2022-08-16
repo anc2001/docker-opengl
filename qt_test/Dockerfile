@@ -1,4 +1,4 @@
-FROM cs1230_env:test
+FROM anc2001/cs1230_env:graphical
 
 ARG QT_PATH=/opt/Qt
 ARG QT_VERSION=6.2.4
