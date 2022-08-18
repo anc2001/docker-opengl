@@ -8,7 +8,7 @@ ENV ENV DEBIAN_FRONTEND=noninteractive \
     QT_PATH=${QT_PATH} \
     PATH=${QT_PATH}/Tools/CMake/bin:${QT_PATH}/Tools/Ninja:${QT_PATH}/${QT_VERSION}/gcc_64/bin:$PATH
 
-RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get update
 RUN apt-get -y install \ 
 build-essential \
 libgl1-mesa-dev \
