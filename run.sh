@@ -130,7 +130,8 @@ docker run \
   ${mount_local} \
   $port_arg \
   $extra_run_args \
-  $image >/dev/null
+  $image >/dev/null \
+  /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
 print_app_output() {
 	docker cp $container:/var/log/supervisor/graphical-app-launcher.log - \

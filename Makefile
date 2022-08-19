@@ -5,7 +5,7 @@ ORG = thewtex
 IMAGE = opengl
 
 # Docker TAG
-TAG = debian
+TAG = ubuntu2004
 
 build:
 	docker build \

@@ -1,4 +1,4 @@
-FROM anc2001/cs1230_env:graphical
+FROM docker-opengl:latest
 
 ARG QT_PATH=/opt/Qt
 ARG QT_VERSION=6.2.4
