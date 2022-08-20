@@ -1,4 +1,4 @@
-FROM gradescope/autograder-base:ubuntu-20.04
+FROM ubuntu:20.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   apt-transport-https \
@@ -72,6 +72,7 @@ ENV DISPLAY :0
 
 WORKDIR /root
 
+# Install Qt into the image
 ARG QT_VERSION=6.2.4
 ARG QT_PATH=/opt/Qt
 
@@ -85,6 +86,11 @@ RUN apt-get -y install build-essential libgl1-mesa-dev
 COPY get_qt.sh /tmp/
 RUN chmod +x /tmp/*
 RUN /tmp/get_qt.sh
+
+# Setup autograder
+COPY run_autograder /autograder/
+RUN dos2unix /autograder/run_autograder
+RUN chmod +x /autograder/run_autograder
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE

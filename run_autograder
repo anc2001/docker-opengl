@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+QT_PATH=/opt/Qt
+QT_VERSION=6.2.4
+PATH=${QT_PATH}/Tools/CMake/bin:${QT_PATH}/Tools/Ninja:${QT_PATH}/${QT_VERSION}/gcc_64/bin:$PATH 
+
+rm -rf /tmp/build
+mkdir -p /tmp/build
+
+flag=""
+{ # try
+cmake -DCMAKE_PREFIX_PATH=${QT_PATH}/${QT_VERSION}/gcc_64 -S /autograder/submission -B /tmp/build && \
+cmake --build /tmp/build && \
+flag="Success"
+} || { # catch
+flag="Failure"
+}
+
+score=0
+if [[ $flag = "Success" ]]
+then
+    score=1
+fi
+
+cat > /autograder/results/results.json <<EOF
+{
+  "output": "Project Compilation ${flag}",
+  "stdout_visibility": "visible",
+  "score": ${score},
+  "max_score": 1
+}
+EOF
